@@ -8,7 +8,11 @@
 .buildlog/
 .history
 .svn/
+devlog.md
 migrate_working_dir/
+
+# Environment variables
+.env
 
 # IntelliJ related
 *.iml
@@ -27,6 +31,7 @@ migrate_working_dir/
 .dart_tool/
 .flutter-plugins
 .flutter-plugins-dependencies
+.fvm/flutter_sdk
 .packages
 .pub-cache/
 .pub/
