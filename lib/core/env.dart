@@ -1,3 +1,5 @@
+// ignore_for_file: non_constant_identifier_names
+
 import 'package:flutter_config/flutter_config.dart';
 
 class Env {
@@ -7,6 +9,6 @@ class Env {
     return value;
   }
 
-  static String get googleMapsApiKey => _getKey('GOOGLE_MAPS_API_KEY');
-  static String get oldGoogleMapsApiKey => _getKey('GOOGLE_MAPS_API_KEY_OLD');
+  static String get MAPS_API_KEY => _getKey('GOOGLE_MAPS_API_KEY');
+  static String get MAPS_API_KEY_OLD => _getKey('GOOGLE_MAPS_API_KEY_OLD');
 }

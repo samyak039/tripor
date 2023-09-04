@@ -2,6 +2,18 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
 
+enum Locations {
+  blrGoogle(LatLng(12.9938179, 77.6580512)),
+  blrBengaluruPalace(LatLng(13.0019955, 77.5848364)),
+  dlhRedFort(LatLng(28.6561639, 77.2384454)),
+  blrP1(LatLng(12.9054376, 77.6294875)),
+  blrP2(LatLng(12.8893797, 77.6407192)),
+  ;
+
+  const Locations(this.ll);
+  final LatLng ll;
+}
+
 final currentLocationProvider = FutureProvider<LatLng>((ref) async {
   // Test if location services are enabled.
   final bool serviceEnabled = await Geolocator.isLocationServiceEnabled();
@@ -38,9 +50,9 @@ final currentLocationProvider = FutureProvider<LatLng>((ref) async {
 });
 
 final sourceLocationProvider = Provider<LatLng>((ref) {
-  return const LatLng(13.0019955, 77.5848364);
+  return Locations.blrP2.ll;
 });
 
 final destinationLocationProvider = Provider<LatLng>((ref) {
-  return const LatLng(28.6561639, 77.2384454);
+  return Locations.blrP1.ll;
 });
