@@ -49,10 +49,12 @@ final currentLocationProvider = FutureProvider<LatLng>((ref) async {
   return LatLng(currentPosition.latitude, currentPosition.longitude);
 });
 
-final sourceLocationProvider = Provider<LatLng>((ref) {
+final sourceLocationProvider = StateProvider<LatLng>((ref) {
   return Locations.blrP2.ll;
+  // return Locations.blrBengaluruPalace.ll;
 });
 
-final destinationLocationProvider = Provider<LatLng>((ref) {
+final destinationLocationProvider = StateProvider<LatLng>((ref) {
   return Locations.blrP1.ll;
+  // return Locations.dlhRedFort.ll;
 });

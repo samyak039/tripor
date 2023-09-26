@@ -5,4 +5,4 @@ final polylineCoordinatesProvider = StateProvider<List<LatLng>>((ref) => []);
 
 final polylineOverview = StateProvider<String?>((ref) => null);
 
-final polygonProvider = StateProvider<List<LatLng>>((ref) => []);
+// final polygonProvider = StateProvider<List<LatLng>>((ref) => []);

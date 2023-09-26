@@ -10,8 +10,9 @@ import 'polyline_coordinates_provider.dart';
 
 final polylineRouteProvider =
     FutureProvider.family<void, LatLng>((ref, sourceLoc) async {
-  final polylinePoints = PolylinePoints();
   final destinationLoc = ref.read(destinationLocationProvider);
+
+  final polylinePoints = PolylinePoints();
 
   Chronicle(StackTrace.current, 'polylinePoints', [
     Env.MAPS_API_KEY,
@@ -45,8 +46,8 @@ final polylineRouteProvider =
 
     ref.read(polylineCoordinatesProvider.notifier).state = polylineCoordinates;
 
-    ref.read(polygonProvider.notifier).state =
-        upperPolypoints + lowerPolypoints.reversed.toList();
+    // ref.read(polygonProvider.notifier).state =
+    //     upperPolypoints + lowerPolypoints.reversed.toList();
   }
 
   ref.read(polylineOverview.notifier).state = result.overviewPolyline;

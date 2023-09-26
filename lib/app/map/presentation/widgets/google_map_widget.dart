@@ -4,6 +4,7 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import '../../map_utils.dart';
 import '../../providers/location_provider.dart';
+import '../../providers/nearby_provider.dart';
 import '../../providers/polyline_coordinates_provider.dart';
 import '../../providers/polyline_route_provider.dart';
 
@@ -20,8 +21,10 @@ class GoogleMapWidget extends HookConsumerWidget {
     ref.watch(polylineRouteProvider(sourceLoc));
 
     final polylinePoints = ref.watch(polylineCoordinatesProvider);
-    final polygonPoints = ref.watch(polygonProvider);
-    // Chronicle(StackTrace.current, 'polyPoints', [polyPoints]);
+    // final polygonPoints = ref.watch(polygonProvider);
+
+    ref.watch(nearbyCoordinatesController(polylinePoints));
+    final nearbyCoordinates = ref.watch(nearbyCoordinatesProvider);
 
     if (currentLoc == null) {
       return const Center(child: CircularProgressIndicator());
@@ -36,9 +39,6 @@ class GoogleMapWidget extends HookConsumerWidget {
         Marker(
           markerId: const MarkerId('current'),
           position: currentLoc,
-          icon: BitmapDescriptor.defaultMarkerWithHue(
-            BitmapDescriptor.hueViolet,
-          ),
         ),
         Marker(
           markerId: const MarkerId('source'),
@@ -51,7 +51,16 @@ class GoogleMapWidget extends HookConsumerWidget {
           markerId: const MarkerId('destination'),
           position: destinationLoc,
           icon: BitmapDescriptor.defaultMarkerWithHue(
-            BitmapDescriptor.hueRed,
+            BitmapDescriptor.hueGreen,
+          ),
+        ),
+        ...nearbyCoordinates.map(
+          (e) => Marker(
+            markerId: MarkerId('${e.latitude}, ${e.longitude}'),
+            position: e,
+            icon: BitmapDescriptor.defaultMarkerWithHue(
+              BitmapDescriptor.hueViolet,
+            ),
           ),
         ),
       },
@@ -63,16 +72,16 @@ class GoogleMapWidget extends HookConsumerWidget {
           width: 5,
         ),
       },
-      polygons: {
-        Polygon(
-          polygonId: const PolygonId('offset'),
-          points: polygonPoints,
-          fillColor:
-              Theme.of(context).colorScheme.inversePrimary.withAlpha(100),
-          strokeColor: Theme.of(context).colorScheme.primary,
-          strokeWidth: 2,
-        ),
-      },
+      // polygons: {
+      //   Polygon(
+      //     polygonId: const PolygonId('offset'),
+      //     points: polygonPoints,
+      //     fillColor:
+      //         Theme.of(context).colorScheme.inversePrimary.withAlpha(100),
+      //     strokeColor: Theme.of(context).colorScheme.primary,
+      //     strokeWidth: 2,
+      //   ),
+      // },
     );
   }
 }

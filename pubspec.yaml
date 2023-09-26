@@ -26,11 +26,13 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_config: ^2.0.2
+  flutter_google_places_hoc081098: ^2.0.0-beta.0
   flutter_hooks: ^0.20.0
   flutter_polyline_points: ^2.0.0
   geolocator: ^10.0.0
   get_it: ^7.6.0
   go_router: ^10.1.0
+  google_api_headers: ^2.0.2
   google_maps_flutter: ^2.4.0
   hooks_riverpod: ^2.3.8
   lint: ^2.1.2
