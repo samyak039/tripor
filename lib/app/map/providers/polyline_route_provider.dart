@@ -6,11 +6,12 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 import '../../../core/env.dart';
 import '../map_utils.dart';
 import 'location_provider.dart';
+import 'nearby_provider.dart';
 import 'polyline_coordinates_provider.dart';
 
 final polylineRouteProvider =
-    FutureProvider.family<void, LatLng>((ref, sourceLoc) async {
-  final destinationLoc = ref.read(destinationLocationProvider);
+    FutureProvider.family<void, LatLng>((ref, destinationLoc) async {
+  final sourceLoc = ref.watch(sourceLocationProvider);
 
   final polylinePoints = PolylinePoints();
 
@@ -31,6 +32,8 @@ final polylineRouteProvider =
   Chronicle(StackTrace.current, 'result', [result.toString]);
 
   if (result.points.isNotEmpty) {
+    ref.read(nearbyCoordinatesProvider.notifier).state = [];
+
     final polylineCoordinates = <LatLng>[];
 
     final upperPolypoints = <LatLng>[];

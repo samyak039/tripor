@@ -41,7 +41,7 @@ class _MapPageState extends ConsumerState<MapPage> {
     final sourceLoc = ref.watch(sourceLocationProvider);
     final destinationLoc = ref.watch(destinationLocationProvider);
 
-    ref.watch(polylineRouteProvider(sourceLoc));
+    ref.watch(polylineRouteProvider(destinationLoc));
 
     final polylinePoints = ref.watch(polylineCoordinatesProvider);
     // final polygonPoints = ref.watch(polygonProvider);
